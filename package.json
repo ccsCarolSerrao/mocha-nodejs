@@ -1,0 +1,23 @@
+{
+  "name": "mocha-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ccsCarolSerrao/mocha-nodejs.git",
+  "author": "Carol Serrão <carolina.serrao@bodytech.com.br>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "lint:fix": "tslint --project tsconfig.json --fix",
+    "test": "mocha --require ts-node/register './tests/**/*.spec.ts'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.9",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  }
+}
