@@ -10,7 +10,9 @@
     "lint:fix": "tslint --project tsconfig.json --fix",
     "test": "mocha --require ts-node/register './tests/**/*.spec.ts'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/chai": "^4.1.7"
+  },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.9",

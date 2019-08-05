@@ -1,18 +1,22 @@
-import assert from 'assert'
+import { expect, should } from 'chai'
+import { describe, it, before } from 'mocha'
 import { AuthController } from '../../controllers/auth.controller';
 
 describe('AuthController', () => {
     beforeEach(() => {
         AuthController.setRoles(['user'])
+        should()
     })
     describe('isAuthorize', () => {
         it('Should return false if not authorize', () => {
-            assert.equal(false, AuthController.isAuthorize('admin'))
+            const isAuth: boolean = AuthController.isAuthorize('admin')
+            expect(isAuth).to.be.false
         })
 
         it('Should return true if authorize', () => {
             AuthController.setRoles(['user', 'admin'])
-            assert.equal(true, AuthController.isAuthorize('admin'))
+            const isAuth: boolean = AuthController.isAuthorize('admin')
+            expect(isAuth).to.be.true
         })
 
         it('Should not allow a get if not authorize')
@@ -23,7 +27,7 @@ describe('AuthController', () => {
             this.timeout(2500) // does not work with arrow functions
             AuthController.isAuthorizeAsync('admin',
                 (isAuth: boolean) => {
-                    assert.equal(false, isAuth)
+                    isAuth.should.be.false
                     done();
                 })
         })
@@ -33,7 +37,7 @@ describe('AuthController', () => {
             AuthController.setRoles(['user', 'admin'])
             AuthController.isAuthorizeAsync('admin',
                 (isAuth: boolean) => {
-                    assert.equal(true, isAuth)
+                    expect(isAuth).to.be.true
                     done();
                 })
         })
