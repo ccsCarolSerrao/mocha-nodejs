@@ -2,10 +2,14 @@ import { expect, should } from 'chai'
 import { describe, it, before } from 'mocha'
 import { AuthController } from '../../controllers/auth.controller';
 
+import chai = require('chai');
+import chaiAsPromised from 'chai-as-promised';
+chai.use(chaiAsPromised);
+chai.should()
+
 describe('AuthController', () => {
     beforeEach(() => {
         AuthController.setRoles(['user'])
-        should()
     })
     describe('isAuthorize', () => {
         it('Should return false if not authorize', () => {
@@ -32,7 +36,7 @@ describe('AuthController', () => {
                 })
         })
 
-        it('Should return false if not authorize', function (done) {
+        it('Should return true if authorize', function (done) {
             this.timeout(2500) // does not work with arrow functions
             AuthController.setRoles(['user', 'admin'])
             AuthController.isAuthorizeAsync('admin',
@@ -40,6 +44,16 @@ describe('AuthController', () => {
                     expect(isAuth).to.be.true
                     done();
                 })
+        })
+    })
+    describe('isAuthorizePromise', () => {
+        it('Should return false if not authorize', () => {
+            return AuthController.isAuthorizePromise('admin').should.eventually.be.false
+        })
+        
+        it('Should return true if authorize', () => {
+            AuthController.setRoles(['user', 'admin'])
+            return AuthController.isAuthorizePromise('admin').should.eventually.be.true
         })
     })
 })

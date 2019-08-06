@@ -12,6 +12,12 @@ export namespace AuthController {
         setTimeout(() => {
             callback(roles.indexOf(needRole) >= 0)
         }, 2100)
-        return 
+        return
+    }
+
+    export function isAuthorizePromise(needRole: string) {
+        return new Promise((resolve) => {
+            resolve(roles.indexOf(needRole) >= 0)
+        })
     }
 }

@@ -11,7 +11,9 @@
     "test": "mocha --require ts-node/register './tests/**/*.spec.ts'"
   },
   "dependencies": {
-    "@types/chai": "^4.1.7"
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.1",
+    "chai-as-promised": "^7.1.1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
